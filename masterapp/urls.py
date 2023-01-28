@@ -17,6 +17,11 @@ urlpatterns = [
     path('products/<int:id>/',views.Productindividual.as_view()),
     path('products/update/<int:pk>', views.updateProduct.as_view()),
     path('products/delete/<int:pk>', views.deleteProduct.as_view()),
+    
+    path('productproperty/', views.ProductPropertyView.as_view()),
+    path('productproperty/<int:id>/',views.ProductindividualProperty.as_view()),
+    path('productproperty/update/<int:pk>', views.updateProductProperty.as_view()),
+    path('productproperty/delete/<int:pk>', views.deleteProductProperty.as_view()),
     #----------------------------------------------------------------------------
     path('shippo/', views.ShipPOView.as_view()),
     path('shippo/update/<int:pk>', views.updateShipPO.as_view()),

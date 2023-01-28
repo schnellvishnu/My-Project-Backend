@@ -15,8 +15,8 @@ from django.contrib.auth.models import User
 
 class RegisterView(APIView):
   
-    authentication_classes = [SessionAuthentication,BasicAuthentication]
-    permission_classes = [IsAuthenticated]
+    # authentication_classes = [SessionAuthentication,BasicAuthentication]
+    # permission_classes = [IsAuthenticated]
     def get(self, request):
         detailsObj = Register.objects.all()
         serializeObj =RegisterSerializer(detailsObj, many = True)

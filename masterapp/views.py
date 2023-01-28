@@ -3,7 +3,7 @@ from rest_framework import generics
 
 from masterapp.models import Company, Customers,Stock,Products,Shipping
 from accounts.models import History
-from masterapp.serializers import CompanySerializer, CustomersSerializer,StockSerializer,ShipPOSerializer,ProductSerializer
+from masterapp.serializers import CompanySerializer, CustomersSerializer,StockSerializer,ShipPOSerializer,ProductSerializer,ProductPropertySerializer
 # from masterapp.permissions import ObjectDestroyPermission, Productpermission
 from rest_framework import generics
 from rest_framework.views import APIView
@@ -163,6 +163,54 @@ class  Productindividual(APIView):
         return Response(serializeObj.data)       
 
 #/////////////////////////////////////////////////////////////////////////////////
+class ProductPropertyView(APIView):
+    def get(self, request):
+        detailsObj = Products.objects.all()
+        serializeObj = ProductPropertySerializer(detailsObj, many = True)
+        return Response(serializeObj.data)
+
+   
+    def post(self, request):
+        serializeObj = ProductPropertySerializer(data=request.data)
+        if serializeObj.is_valid():
+            serializeObj.save()
+            
+            return Response(200)
+        return Response(serializeObj.errors)
+
+class updateProductProperty(APIView):
+    def put(self, request, pk):
+        try:
+            detailObj = Products.objects.get(pk=pk)
+        except:
+            return Response("Not found in database")
+
+        serializeObj = ProductPropertySerializer(detailObj, data=request.data)
+        if serializeObj.is_valid():
+            serializeObj.save()
+            return Response(200)
+        return Response(serializeObj.errors)
+
+
+
+class deleteProductProperty(APIView):
+    def delete(self, request, pk):
+        try:
+            detailsObj = Products.objects.get(pk=pk)
+        except:
+            return Response("Not found in database")
+
+        detailsObj.delete()
+        return Response(200)
+
+class  ProductindividualProperty(APIView):
+    def get(self, request, id):
+        detailsObj= Products.objects.all().filter(id=id)
+        serializeObj = ProductPropertySerializer(detailsObj, many=True)
+        return Response(serializeObj.data) 
+    
+# ///////////////////////////////////////////////////////////////////////////////////
+
 
 class ShipPOView(APIView):
     def get(self, request):
@@ -314,9 +362,6 @@ class StockView(APIView):
         serializeObj = StockSerializer(detailsObj, many = True)
         return Response(serializeObj.data)
   
-   
-
-
   
     def post(self, request):
         serializeObj =StockSerializer(data=request.data)

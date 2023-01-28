@@ -22,6 +22,14 @@ class ProductSerializer(serializers.ModelSerializer):
                 "created_at",'updated_at',
                 "status"
                 ]
+        
+class ProductPropertySerializer(serializers.ModelSerializer):
+               class Meta:
+                    model = Products
+                    fields=["id","batch_number","manufacturing_date","exp_date",
+                    "License_Number"
+                    
+                    ]                 
 class ShipPOSerializer(serializers.ModelSerializer):
     
     class Meta:
