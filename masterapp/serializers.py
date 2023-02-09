@@ -11,7 +11,7 @@ class CustomersSerializer(serializers.ModelSerializer):
     class Meta:
         model =Customers
         # fields="__all__"
-        fields=["id","name","address","state","country","created_by","city","description","company_name"]
+        fields=["id","name","address","state","country","created_by","city","description","company_name","status"]
 
 class ProductSerializer(serializers.ModelSerializer):
     
@@ -19,8 +19,9 @@ class ProductSerializer(serializers.ModelSerializer):
         model = Products
         fields=["id","ponumber","name","description",
                 "created_by",
-                "created_at",'updated_at',
-                "status"
+                "created_at","updated_at","customer_name",
+                "company_name",
+                "status",
                 ]
         
 class ProductPropertySerializer(serializers.ModelSerializer):

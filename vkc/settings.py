@@ -92,7 +92,7 @@ WSGI_APPLICATION = 'vkc.wsgi.application'
 DATABASES = {
     'default': {
     'ENGINE': 'django.db.backends.postgresql',
-    'NAME': 'vkc_db',
+    'NAME': 'mycom_db',
     'USER': 'postgres',
     # 'PASSWORD': get_secrets('DB_PASSWORD'),
     'PASSWORD': '1234',
